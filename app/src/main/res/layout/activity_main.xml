@@ -95,7 +95,8 @@
                     android:layout_weight="0.5"
                     android:text="Income Sum"
                     android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:id="@+id/tv_incsum"/>
 
             <TextView
                     android:layout_width="0dp"
@@ -103,7 +104,8 @@
                     android:layout_weight="0.5"
                     android:text="Expense Sum"
                     android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:id="@+id/tv_expsum"/>
 
 
         </LinearLayout>

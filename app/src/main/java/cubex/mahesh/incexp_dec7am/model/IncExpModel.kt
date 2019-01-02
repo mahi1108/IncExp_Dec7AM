@@ -1,5 +1,6 @@
 package cubex.mahesh.incexp_dec7am.model
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import cubex.mahesh.incexp_dec7am.beans.IncExpBean
@@ -20,16 +21,33 @@ class IncExpModel : PresenterAPI {
             "IncExpDB", Context.MODE_PRIVATE,
             null)
 
-        dBase!!.execSQL("create table if not exists incexp(_id int primary key autoincrement,date varchar(20),money int,_desc varchar(500),type varchar(50)) ")
+        dBase!!.execSQL("create table if not exists incexp(_id integer primary key autoincrement,date varchar(20),money integer,_desc varchar(500),type varchar(50)) ")
 
     }
 
     override fun save(bean: IncExpBean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var cv = ContentValues( )
+        cv.put("date",bean.date)
+        cv.put("money",bean.money)
+        cv.put("_desc",bean.desc)
+        cv.put("type",bean.type)
+
+    var status = dBase!!.insert("incexp",
+        null,cv)
+
+     if(status!=-1L){
+         mActivity!!.saveOutput("Record is Inserted....")
+     }else{
+         mActivity!!.saveOutput("Record  Insertion is Failed....")
+     }
+
     }
 
     override fun read() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        var c = dBase!!.query("incexp",null,null,
+            null,null,null,null)
+        mActivity!!.readOutput(c)
     }
 
 
